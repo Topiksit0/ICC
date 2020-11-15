@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+//resolTS
 int resolTS (int n, double **A, double *b, double *x, double tol){
     for(int i = n-1; i >= 0; i--){
         x[i] = b[i];  
@@ -14,7 +15,7 @@ int resolTS (int n, double **A, double *b, double *x, double tol){
         }
         else{
             for(int j = n-1; j > i; j--){
-                
+                 
             }
         }
     }
