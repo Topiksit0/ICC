@@ -6,26 +6,25 @@
 #include <stdlib.h>
 #include <math.h>
 
-
-int resolTS (int n, double **A, double *b, double *x, double tol){
-    for(int i = n-1; i >= 0; i--){
-        x[i] = b[i];  
-        if(abs(A[i][i]) < tol){
+int resolTS(int n, double **A, double *b, double *x, double tol)
+{
+    for (int i = n - 1; i >= 0; i--){
+        x[i] = b[i];
+        
+        if (abs(A[i][i]) < tol){
             return 1;
         }
-        else{
-            for(int j = n-1; j > i; j--){
-                 
-            }
+        else{         
+            for (int j = n - 1; j > i; j--){
+                x[i] -= (A[i][j] * x[j]);
+            }          
+            x[i] /= A[i][i];
         }
     }
 }
 
-void prodMatVec (double **A, double *x, double *y, int n){
-
+void prodMatVec(double **A, double *x, double *y, int n){
 }
 
-double norma2 (int n, double *z){
-
-
+double norma2(int n, double *z){
 }
