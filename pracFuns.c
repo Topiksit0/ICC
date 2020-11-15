@@ -14,9 +14,7 @@ int resolTS(int n, double **A, double *b, double *x, double tol){
         }
         else{         
             for (int j = n - 1; j > i; j--){
-                if(A[i][i] != A[i][j]){
-                    x[i] -= (A[i][j] * x[j]);
-                }             
+                x[i] -= (A[i][j] * x[j]);                         
             }          
             x[i] /= A[i][i];
         }
@@ -25,7 +23,19 @@ int resolTS(int n, double **A, double *b, double *x, double tol){
 }
 
 void prodMatVec(double **A, double *x, double *y, int n){
+    for(int i = 0; i < n - 1; i++){
+        y[i] = 0;
+        for(int j = 0; j < n - 1; j++){
+            y[i] += A[i][j] * x[j];
+        }
+    }
 }
 
-double norma2(int n, double *z){
+double norma2(int n, double *z){  
+    double norma = 0;   
+    for (int i = 0; i < n - 1; i++){
+        norma += pow(z[i], 2);
+    }  
+    norma = sqrtf(norma);
+    return norma;
 }
