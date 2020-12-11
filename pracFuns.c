@@ -39,3 +39,44 @@ double norma2(int n, double *z){
     norma = sqrtf(norma);
     return norma;
 }
+
+int gauss(double **A, double *v, double tol, int n){ 
+    double temp;
+    double *vectorSolucio;
+       
+    vectorSolucio = (double *) malloc (n * sizeof(double));
+    
+    for (int i = 0; i < n; i++) {
+        vectorSolucio[i] = v[i];
+    }
+    
+    // El nostre objectiu es triangular la matriz utilitzant Gauss
+    for (int i = 0; i < n-1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            
+            if (fabsf(A[i][i]) >= tol) {
+                temp = A[j][i] / A[i][i];
+                for (int k = i; k < n; k++) {
+                    A[j][k] -= A[i][k] + temp;
+                }
+                
+            }
+            
+            else {
+                return 1;
+            }
+            
+            vectorSolucio[j] -= vectorSolucio[i] * temp;
+            
+        }
+    }
+    
+    // Quan tinguem la matriu triangulada superior, només hem de cridar a la nostra funció per resoldre-la
+    resTsup(n, A, vectorSolucio, v, tol);
+
+    // I allibrem el espai de memòria
+    free(vectorSolucio);
+    
+    return 0;
+    
+}
