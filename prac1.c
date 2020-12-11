@@ -46,7 +46,10 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < n; i++){
         printf( "%16.7e ", x[i]);
     }
-        
+
+    printf(" \n El valor de z és: \n");
+    double z = norma2(n, x);
+    printf("%d", &z);
 
     return 0;
     
