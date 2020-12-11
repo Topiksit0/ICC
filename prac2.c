@@ -1,5 +1,5 @@
 /* PALOMINO : VIVAR : MARCOS : 47132283Q / NIUB : membre1 de la parella */
-/* COGNOM1 : COGNOM2 : NOM : DNI / NIUB : membre2 de la parella */
+/* LOPEZ: RUIZ : GERARD : 46495842P / NIUB : 20274763*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>

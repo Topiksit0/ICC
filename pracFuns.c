@@ -1,5 +1,5 @@
 /* PALOMINO : VIVAR : MARCOS : 47132283Q / NIUB : membre1 de la parella */
-/* COGNOM1 : COGNOM2 : NOM : DNI / NIUB : membre2 de la parella */
+/* LOPEZ : RUIZ : GERARD : 46495842P / NIUB : 20274763 */
 
 #include "pracFuns.h"
 #include <stdio.h>
@@ -72,7 +72,7 @@ int gauss(double **A, double *v, double tol, int n){
     }
     
     // Quan tinguem la matriu triangulada superior, només hem de cridar a la nostra funció per resoldre-la
-    resTsup(n, A, vectorSolucio, v, tol);
+    resolTS(n, A, vectorSolucio, v, tol);
 
     // I allibrem el espai de memòria
     free(vectorSolucio);
