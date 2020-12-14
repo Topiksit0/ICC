@@ -6,7 +6,7 @@
 #include "pracFuns.h"
 
 int main(int argc, char const *argv[]){
-    double **A, *b, *x;
+    double **A, *b;
     int n;
 
     printf("Introdueix les dimensions de la matriu");
@@ -19,7 +19,6 @@ int main(int argc, char const *argv[]){
 
     A = (double **) malloc (n * sizeof(double*));
     b = (double *) malloc (n * sizeof(double));
-    x = (double *) malloc (n * sizeof(double));
 
     for(int i = 0; i < n; i++){
         A[i] = (double *) malloc(n * sizeof(double));
@@ -40,5 +39,10 @@ int main(int argc, char const *argv[]){
         printf("b[%d]", i);
         scanf("%le", &b[i]);
     }
-    
-}
+
+    printf("\n Vector soluci0 b = \n");
+    gauss(A,b,0.001,n);
+    for (int i = 0; i < n; i++){
+        printf( "%lf ", b[i]);
+    }
+} 

@@ -41,42 +41,31 @@ double norma2(int n, double *z){
 }
 
 int gauss(double **A, double *v, double tol, int n){ 
-    double temp;
-    double *vectorSolucio;
-       
-    vectorSolucio = (double *) malloc (n * sizeof(double));
-    
-    for (int i = 0; i < n; i++) {
-        vectorSolucio[i] = v[i];
+    int i,j,k;
+    double *t,term;
+    t = (double *) malloc (n * sizeof(double));
+
+    for (int x = 0; x < n; x++) {
+        t[x] = v[x];
     }
-    
-    // El nostre objectiu es triangular la matriz utilitzant Gauss
-    for (int i = 0; i < n-1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            
-            if (fabsf(A[i][i]) >= tol) {
-                temp = A[j][i] / A[i][i];
-                for (int k = i; k < n; k++) {
-                    A[j][k] -= A[i][k] + temp;
-                }
-                
+
+    for(i=0;i<n-1;i++){
+        for(k=i+1;k<n;k++){
+            if (fabsf(A[i][k]) >= tol){
+                term=A[k][i]/A[i][i];
+                for(j=0;j<n;j++){
+                    A[k][j]=A[k][j]-term*A[i][j];
+                }               
             }
-            
-            else {
+            else{
                 return 1;
             }
-            
-            vectorSolucio[j] -= vectorSolucio[i] * temp;
-            
+            t[k] -= t[i] * term;
+
         }
     }
     
-    // Quan tinguem la matriu triangulada superior, només hem de cridar a la nostra funció per resoldre-la
-    resolTS(n, A, vectorSolucio, v, tol);
-
-    // I allibrem el espai de memòria
-    free(vectorSolucio);
-    
+    resolTS(n,A,t,v,tol);
+    free(t);
     return 0;
-    
 }
