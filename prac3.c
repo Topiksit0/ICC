@@ -5,7 +5,6 @@
 #include <math.h>
 #include "pracFuns.h"
 
-/*
 int main(int argc, char const *argv[]){
     double **A, *b;
     int n;
@@ -26,7 +25,7 @@ int main(int argc, char const *argv[]){
     }
 
     printf("\n Introduce los valores de la Matriz A \n");
-    
+
     for(int i = 0 ; i < n; i++){
         for(int j = 0; j < n; j++){
             printf("A[%d][%d]: ", i, j);
@@ -41,10 +40,6 @@ int main(int argc, char const *argv[]){
         scanf("%le", &b[i]);
     }
 
-    printf("\n Vector soluci0 b = \n");
-    gauss(A,b,0.001,n);
-    for (int i = 0; i < n; i++){
-        printf( "%lf ", b[i]);
-    }
-} 
-*/
+    gausspivot(A,b,1e-7,n);
+
+}

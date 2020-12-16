@@ -9,4 +9,4 @@ add_executable(ICC
         prac1.c
         prac2.c
         pracFuns.c
-        pracFuns.h)
+        pracFuns.h prac3.c)

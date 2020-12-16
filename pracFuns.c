@@ -40,7 +40,7 @@ double norma2(int n, double *z){
     return norma;
 }
 
-int gauss(double **A, double *v, double tol, int n){ 
+int gauss(double **A, double *v, double tol, int n){
     int i,j,k;
     double *t,term;
     t = (double *) malloc (n * sizeof(double));
@@ -55,7 +55,7 @@ int gauss(double **A, double *v, double tol, int n){
                 term=A[k][i]/A[i][i];
                 for(j=0;j<n;j++){
                     A[k][j]=A[k][j]-term*A[i][j];
-                }               
+                }
             }
             else{
                 return 1;
@@ -64,8 +64,46 @@ int gauss(double **A, double *v, double tol, int n){
 
         }
     }
-    
+
     resolTS(n,A,t,v,tol);
     free(t);
     return 0;
+}
+int gausspivot(double **A, double *v, double tol, int n){
+    int k, i, j, pausa;
+    double mult;
+
+    for (k=0; k<n-1; k++) {
+
+        if (fabs(A[k][k]) < tol) {
+            printf(" pivot nul (o quasi) \n");
+            return 1;
+        }
+
+        for (i = k + 1; i < n; i++) {
+            mult = A[i][k] / A[k][k];
+            A[i][k] = 0.;
+            for (j = k+1 ; j <= n; j++) {
+                A[i][j] = A[i][j] - mult * A[k][j];
+            }
+            v[i] = v[i] - mult * v[k];
+
+
+
+        }
+    }
+    printf("\n sistema obtingut al final \n");
+    for (i = 0; i < n; i++) {
+
+        for (j = 0; j < n; j++) {
+            printf(" %+10.4lf", A[i][j]);
+        }
+        printf(" | %+.4lf \n", v[i]);
+    }
+    double det = 1;
+    for(int i = 0;i<n;i++){
+        det = A[i][i]*det;
+    }
+    return det;
+
 }
