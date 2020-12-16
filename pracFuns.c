@@ -70,14 +70,18 @@ int gauss(double **A, double *v, double tol, int n){
     return 0;
 }
 int gausspivot(double **A, double *v, double tol, int n){
-    int k, i, j, pausa;
-    double mult;
+    int k, i, j;
+    double mult, temp, temp2;
 
     for (k=0; k<n-1; k++) {
 
         if (fabs(A[k][k]) < tol) {
-            printf(" pivot nul (o quasi) \n");
-            return 1;
+            temp = A[k][k];
+            A[k][k]= A[k+1][k];
+            A[k+1][k] = temp;
+            temp2 = v[k];
+            v[k] = v[k+1];
+            v[k+1] = temp2;
         }
 
         for (i = k + 1; i < n; i++) {
@@ -100,10 +104,6 @@ int gausspivot(double **A, double *v, double tol, int n){
         }
         printf(" | %+.4lf \n", v[i]);
     }
-    double det = 1;
-    for(int i = 0;i<n;i++){
-        det = A[i][i]*det;
-    }
-    return det;
+    return 0;
 
 }
