@@ -5,7 +5,7 @@
 #include <math.h>
 #include "pracFuns.h"
 
-/*
+
 int main(int argc, char const *argv[]){
     double **A, *b;
     int n;
@@ -47,4 +47,3 @@ int main(int argc, char const *argv[]){
         printf( "%lf ", b[i]);
     }
 } 
-*/

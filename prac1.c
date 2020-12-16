@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "pracFuns.h"
-/*
+
 int main(int argc, char *argv[]) {
     double **A, *b, *x;
     int n;
@@ -54,4 +54,4 @@ int main(int argc, char *argv[]) {
     return 0;
     
 }
-*/
+
