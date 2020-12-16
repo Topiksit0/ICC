@@ -70,15 +70,17 @@ int gauss(double **A, double *v, double tol, int n){
     return 0;
 }
 int gausspivot(double **A, double *v, double tol, int n){
-    int k, i, j;
+    int k, i, j, x;
     double mult, temp, temp2;
 
     for (k=0; k<n-1; k++) {
 
         if (fabs(A[k][k]) < tol) {
-            temp = A[k][k];
-            A[k][k]= A[k+1][k];
-            A[k+1][k] = temp;
+            for(x = 0; x < n; x++){
+                temp = A[k][x];
+                A[k][x]= A[k+1][x];
+                A[k+1][x] = temp;
+            }
             temp2 = v[k];
             v[k] = v[k+1];
             v[k+1] = temp2;
