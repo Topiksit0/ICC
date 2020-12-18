@@ -9,4 +9,7 @@ void prodMatVec (double **A, double *x, double *y, int n);
 double norma2 (int n, double *z);
 int gauss(double **A, double *v, double tol, int n);
 int gausspivot(double **A, double *v, double tol, int n);
+float horner(float z , float a [], int grau);
+
+
 #endif

@@ -109,3 +109,13 @@ int gausspivot(double **A, double *v, double tol, int n){
     return 0;
 
 }
+
+float horner(float z , float a [], int grau){
+    int i;
+    float sum ;
+    sum = a [grau];
+    for (i = grau; i >= 0; i --){
+        sum = sum *z+a[i];
+    }
+    return sum ;
+}
