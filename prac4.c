@@ -4,7 +4,7 @@
 #include "pracFuns.h"
 
 int main(int argc, char *argv[]){
-    int n,k,i,j,l; 
+    int n,k = 0,i,j,l; 
     double interval1, interval2,tol, **A, *b, num,m,z; 
 
     char nom_fitxer_entrada[100], nom_fitxer_sort[100]; 
@@ -39,6 +39,7 @@ int main(int argc, char *argv[]){
     scanf("%s", nom_fitxer_sort);
     fitxer_sortida = fopen(nom_fitxer_sort, "w");
 
+    
 
     if (fitxer_sortida == NULL){
         printf("Error al obrir el fitxer\n");
@@ -55,41 +56,24 @@ int main(int argc, char *argv[]){
         valors_text_y[i] = num;
     }
 
-
+   
 
     A = (double **) malloc (n * sizeof(double *));
 
-    if (A== NULL){
-        printf("No hi ha prou memòria\n");
-        exit(3);
-    }
+
 
     for (i = 0; i < n; i ++){
         A[i] = (double *) malloc (n * sizeof(double));
-
-        if (A[i] == NULL){
-            printf("No hi ha prou memòria\n");
-            exit(4);
-        }
     }
-
 
     b = (double *) malloc (n * sizeof(double));
 
-    
-    if (b == NULL){
-        printf("No hi ha prou memoria\n");
-        exit(4);
-    }
 
-
-    // Omplim la matriu de Vandermonde
-
-
+    /* Inicializamos la matriz Vandermonde*/
     for (i = 0; i < n; i++){
         for (j = 0; j < n; j++){
             if (j == 0){
-                A[i][j] = 1;              
+                A[i][j] = 1;           
             }
             else{
                 A[i][j] = pow(valors_text[k], j);
@@ -98,15 +82,17 @@ int main(int argc, char *argv[]){
         b[i] = valors_text_y[i];
         k += 1;
     }
-   
-    
 
+    printf("\n la matriz Vandermonde és: \n");
+    /* Imprimimos la matriz Vandermonde */
     for (i = 0; i <  n; i++){
         for (j = 0; j < n; j++){
             printf("%16.7e", A[i][j]);
         }
         printf("\n");
     }
+
+
 
     for (i = 0; i < n; i++){
         printf("%16.7e", b[i]);
@@ -121,6 +107,7 @@ int main(int argc, char *argv[]){
         }
         printf("\n");
     }
+
 
     if (result == 0){
         for (l = 0; l < 1001; l++){
