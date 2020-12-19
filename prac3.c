@@ -7,7 +7,7 @@
 
 int main(int argc, char const *argv[]){
     double **A, *b;
-    int n;
+    int n,i,j;
     double tol;
 
     printf("Introdueix les dimensions de la matriu");
@@ -21,14 +21,14 @@ int main(int argc, char const *argv[]){
     A = (double **) malloc (n * sizeof(double*));
     b = (double *) malloc (n * sizeof(double));
 
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         A[i] = (double *) malloc(n * sizeof(double));
     }
 
     printf("\n Introduce los valores de la Matriz A \n");
 
-    for(int i = 0 ; i < n; i++){
-        for(int j = 0; j < n; j++){
+    for(i = 0 ; i < n; i++){
+        for(j = 0; j < n; j++){
             printf("A[%d][%d]: ", i, j);
             scanf("%le", &A[i][j]);
         }
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]){
 
     printf("\n Introduce los valroes de el vector B \n");
 
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("b[%d]", i);
         scanf("%le", &b[i]);
     }

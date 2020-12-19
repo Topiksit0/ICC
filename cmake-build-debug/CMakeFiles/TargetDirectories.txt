@@ -1,3 +1,0 @@
-C:/Users/gerar/CLionProjects/ICC/cmake-build-debug/CMakeFiles/ICC.dir
-C:/Users/gerar/CLionProjects/ICC/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/gerar/CLionProjects/ICC/cmake-build-debug/CMakeFiles/rebuild_cache.dir

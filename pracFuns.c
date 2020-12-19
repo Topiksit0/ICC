@@ -7,13 +7,14 @@
 #include <math.h>
 
 int resolTS(int n, double **A, double *b, double *x, double tol){
-    for (int i = n - 1; i >= 0; i--){
+    int i, j;
+    for (i = n - 1; i >= 0; i--){
         x[i] = b[i];     
         if (abs(A[i][i]) < tol){
             return 1;
         }
         else{         
-            for (int j = n - 1; j > i; j--){
+            for (j = n - 1; j > i; j--){
                 x[i] -= (A[i][j] * x[j]);                         
             }          
             x[i] /= A[i][i];
@@ -23,17 +24,19 @@ int resolTS(int n, double **A, double *b, double *x, double tol){
 }
 
 void prodMatVec(double **A, double *x, double *y, int n){
-    for(int i = 0; i < n - 1; i++){
+    int i,j;
+    for(i = 0; i < n - 1; i++){
         y[i] = 0;
-        for(int j = 0; j < n - 1; j++){
+        for(j = 0; j < n - 1; j++){
             y[i] += A[i][j] * x[j];
         }
     }
 }
 
 double norma2(int n, double *z){  
+    int i;
     double norma = 0;   
-    for (int i = 0; i < n - 1; i++){
+    for (i = 0; i < n - 1; i++){
         norma += pow(z[i], 2);
     }  
     norma = sqrtf(norma);
@@ -41,11 +44,11 @@ double norma2(int n, double *z){
 }
 
 int gauss(double **A, double *v, double tol, int n){
-    int i,j,k;
+    int i,j,k, x;
     double *t,term;
     t = (double *) malloc (n * sizeof(double));
 
-    for (int x = 0; x < n; x++) {
+    for (x = 0; x < n; x++) {
         t[x] = v[x];
     }
 
@@ -110,9 +113,9 @@ int gausspivot(double **A, double *v, double tol, int n){
 
 }
 
-float horner(float z , float a [], int grau){
+double horner(float z , double a [], int grau){
     int i;
-    float sum ;
+    double sum ;
     sum = a [grau];
     for (i = grau; i >= 0; i --){
         sum = sum *z+a[i];

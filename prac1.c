@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
     double **A, *b, *x;
-    int n;
+    int n,i,j;
     double tol;
 
     printf("Introdueix les dimensions de la matriu");
@@ -22,14 +22,14 @@ int main(int argc, char *argv[]) {
     b = (double *) malloc (n * sizeof(double));
     x = (double *) malloc (n * sizeof(double));
 
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         A[i] = (double *) malloc(n * sizeof(double));
     }
 
     printf("\n Introduce los valores de la Matriz A \n");
     
-    for(int i = 0 ; i < n; i++){
-        for(int j = 0; j < n; j++){
+    for(i = 0 ; i < n; i++){
+        for(j = 0; j < n; j++){
             printf("A[%d][%d]: ", i, j);
             scanf("%le", &A[i][j]);
         }
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n Introduce los valroes de el vector B \n");
 
-    for(int i = 0; i < n; i++){
+    for(i = 0; i < n; i++){
         printf("b[%d]", i);
         scanf("%le", &b[i]);
     }
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n Vector soluci0 x = \n");
     resolTS(n,A,b,x,tol);
-    for (int i = 0; i < n; i++){
+    for (i = 0; i < n; i++){
         printf( "%16.7e ", x[i]);
     }
 
