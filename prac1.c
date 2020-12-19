@@ -8,6 +8,7 @@
 int main(int argc, char *argv[]) {
     double **A, *b, *x;
     int n;
+    double tol;
 
     printf("Introdueix les dimensions de la matriu");
     scanf("%d", &n);
@@ -41,8 +42,11 @@ int main(int argc, char *argv[]) {
         scanf("%le", &b[i]);
     }
 
+    printf("Escriu la tolerància:\n");
+    scanf("%le", &tol);
+
     printf("\n Vector soluci0 x = \n");
-    resolTS(n,A,b,x,0.001);
+    resolTS(n,A,b,x,tol);
     for (int i = 0; i < n; i++){
         printf( "%16.7e ", x[i]);
     }

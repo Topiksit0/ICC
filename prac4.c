@@ -5,9 +5,7 @@
 
 int main(int argc, char *argv[]){
     int n; 
-    double interval1; 
-    double interval2; 
-    double tol; 
+    double interval1, interval2,tol, **A; 
     char nom_fitxer_entrada[80], nom_fitxer_sort[80]; 
     FILE *fitxer_entrada;
     FILE *fitxer_sortida;
@@ -25,7 +23,6 @@ int main(int argc, char *argv[]){
 
     printf("Dona'm el nom del fitxer que vols obrir:\n");
     scanf("%s", nom_fitxer_entrada);
-
 
     fitxer_entrada = fopen(nom_fitxer_entrada, "r");
 

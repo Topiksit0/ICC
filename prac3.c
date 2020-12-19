@@ -8,6 +8,7 @@
 int main(int argc, char const *argv[]){
     double **A, *b;
     int n;
+    double tol;
 
     printf("Introdueix les dimensions de la matriu");
     scanf("%d", &n);
@@ -40,6 +41,9 @@ int main(int argc, char const *argv[]){
         scanf("%le", &b[i]);
     }
 
-    gausspivot(A,b,1e-7,n);
+    printf("Escriu la tolerància:\n");
+    scanf("%le", &tol);
+
+    gausspivot(A,b,tol,n);
 
 }
