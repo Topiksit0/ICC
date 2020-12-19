@@ -6,7 +6,7 @@
 #include "pracFuns.h"
 
 int main(int argc, char *argv[]) {
-    double **A, *b, *x;
+    double **A, *b, *x, *y;
     int n,i,j;
     double tol;
 
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
     A = (double **) malloc (n * sizeof(double*));
     b = (double *) malloc (n * sizeof(double));
     x = (double *) malloc (n * sizeof(double));
+    y = (double*) malloc(n * sizeof (double));
 
     for(i = 0; i < n; i++){
         A[i] = (double *) malloc(n * sizeof(double));
@@ -51,9 +52,18 @@ int main(int argc, char *argv[]) {
         printf( "%16.7e ", x[i]);
     }
 
-    printf(" \n El valor de z és: \n");
-    double z = norma2(n, x);
-    printf("%d", &z);
+ 
+
+    printf("\n Valor residual: \n");
+
+    prodMatVec(A, x, y, n);
+
+    for (i = 0; i < n; i++){
+        y[i] = y[i]- b[i];
+    }
+
+    double resultat = norma2(n, y);
+    printf("%le", resultat);
 
     return 0;
     

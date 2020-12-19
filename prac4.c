@@ -84,23 +84,22 @@ int main(int argc, char *argv[]){
 
 
     // Omplim la matriu de Vandermonde
-    
+
+
     for (i = 0; i < n; i++){
         for (j = 0; j < n; j++){
             if (j == 0){
-                A[i][j] = 1;
-                
+                A[i][j] = 1;              
             }
-
             else{
                 A[i][j] = pow(valors_text[k], j);
             }
         }
-
-
         b[i] = valors_text_y[i];
         k += 1;
     }
+   
+    
 
     for (i = 0; i <  n; i++){
         for (j = 0; j < n; j++){
@@ -114,9 +113,14 @@ int main(int argc, char *argv[]){
     }
     printf("\n");
 
-
     double result = gauss(A, b, tol, n);
 
+    for (i = 0; i <  n; i++){
+        for (j = 0; j < n; j++){
+            printf("%16.7e", A[i][j]);
+        }
+        printf("\n");
+    }
 
     if (result == 0){
         for (l = 0; l < 1001; l++){
@@ -133,12 +137,6 @@ int main(int argc, char *argv[]){
     }
 
 
-    for (i = 0; i < n; i++){
-        free(A[i]);
-    }
-
-    free(A);
-    free(b);
     return 0;
 
 }

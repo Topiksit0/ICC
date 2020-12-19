@@ -45,9 +45,13 @@ int main(int argc, char const *argv[]){
     printf("Escriu la tolerància:\n");
     scanf("%le", &tol);
 
-    printf("\n Vector soluci0 b = \n");
     gauss(A,b,tol,n);
-    for (i = 0; i < n; i++){
-        printf( "%lf ", b[i]);
+    printf("\n sistema obtingut al final \n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            printf(" %+10.6lf", A[i][j]);
+        }
+        printf(" | %+.6lf \n", b[i]);
     }
+
 } 

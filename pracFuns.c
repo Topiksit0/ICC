@@ -44,33 +44,29 @@ double norma2(int n, double *z){
 }
 
 int gauss(double **A, double *v, double tol, int n){
-    int i,j,k, x;
-    double *t,term;
-    t = (double *) malloc (n * sizeof(double));
-
-    for (x = 0; x < n; x++) {
-        t[x] = v[x];
+    double *b;
+    int i, k, j;
+    double mult;
+    
+    b = (double *) malloc (n * sizeof(double));
+    
+    for (i = 0; i < n; i++) {
+        b[i] = v[i];
     }
-
-    for(i=0;i<n-1;i++){
-        for(k=i+1;k<n;k++){
-            if (fabsf(A[k][k]) < tol){
-                term=A[k][i]/A[i][i];
-                for(j=0;j<n;j++){
-                    A[k][j]=A[k][j]-term*A[i][j];
-                }
-            }
-            else{
-                return 1;
-            }
-            t[k] -= t[i] * term;
-
+    
+    for (k=0; k<n-1; k++) {
+        for (i=k+1; i<n; i++) {         
+                mult = A[i][k]/A[k][k];             
+                for (j=k; j<=n; j++) {
+                    A[i][j] = A[i][j]-mult*A[k][j];
+                }         
+                    
+            b[i] -= b[k] * mult;
+            
         }
     }
-
-    resolTS(n,A,t,v,tol);
-    free(t);
-    return 0;
+    free(b);
+    return resolTS(n, A, b, v, tol);
 }
 int gausspivot(double **A, double *v, double tol, int n){
     int k, i, j, x;
