@@ -3,8 +3,8 @@
 #include <math.h>
 #include "pracFuns.h"
 
-int main(int argc, char *argv[]){
-    int n,k,i,j,l; 
+int main(int argc, char const *argv[]){
+        int n,k,i,j,l; 
     double interval1, interval2,tol, **A, *b, num,m,z; 
 
     char nom_fitxer_entrada[100], nom_fitxer_sort[100]; 
@@ -76,69 +76,11 @@ int main(int argc, char *argv[]){
 
     b = (double *) malloc (n * sizeof(double));
 
-    
+
     if (b == NULL){
         printf("No hi ha prou memoria\n");
         exit(4);
     }
 
-
-    // Omplim la matriu de Vandermonde
-    
-    for (i = 0; i < n; i++){
-        for (j = 0; j < n; j++){
-            if (j == 0){
-                A[i][j] = 1;
-                
-            }
-
-            else{
-                A[i][j] = pow(valors_text[k], j);
-            }
-        }
-
-
-        b[i] = valors_text_y[i];
-        k += 1;
-    }
-
-    for (i = 0; i <  n; i++){
-        for (j = 0; j < n; j++){
-            printf("%16.7e", A[i][j]);
-        }
-        printf("\n");
-    }
-
-    for (i = 0; i < n; i++){
-        printf("%16.7e", b[i]);
-    }
-    printf("\n");
-
-
-    double result = gauss(A, b, tol, n);
-
-
-    if (result == 0){
-        for (l = 0; l < 1001; l++){
-            z = (interval1 + l*(interval2 - interval1)) / 1000;
-            m = horner(z, b, n);
-
-            fprintf(fitxer_sortida, "%16.7e %16.7e", z, m);
-        }
-
-        printf("Dades guardades al fitxer correctament\n");
-    }
-    else{
-        printf("Ha succeït un error\n");
-    }
-
-
-    for (i = 0; i < n; i++){
-        free(A[i]);
-    }
-
-    free(A);
-    free(b);
-    return 0;
 
 }

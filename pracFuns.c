@@ -54,7 +54,7 @@ int gauss(double **A, double *v, double tol, int n){
 
     for(i=0;i<n-1;i++){
         for(k=i+1;k<n;k++){
-            if (fabsf(A[i][k]) >= tol){
+            if (fabsf(A[k][k]) < tol){
                 term=A[k][i]/A[i][i];
                 for(j=0;j<n;j++){
                     A[k][j]=A[k][j]-term*A[i][j];
@@ -78,7 +78,7 @@ int gausspivot(double **A, double *v, double tol, int n){
 
     for (k=0; k<n-1; k++) {
 
-        if (fabs(A[k][k]) < tol) {
+        if (pow(fabs(A[k][k]),k) < tol) {
             for(x = 0; x < n; x++){
                 temp = A[k][x];
                 A[k][x]= A[k+1][x];
@@ -88,6 +88,9 @@ int gausspivot(double **A, double *v, double tol, int n){
             v[k] = v[k+1];
             v[k+1] = temp2;
         }
+        else{
+            printf("\n La tolerancia es incorrecte");
+        }
 
         for (i = k + 1; i < n; i++) {
             mult = A[i][k] / A[k][k];
@@ -96,18 +99,15 @@ int gausspivot(double **A, double *v, double tol, int n){
                 A[i][j] = A[i][j] - mult * A[k][j];
             }
             v[i] = v[i] - mult * v[k];
-
-
-
         }
     }
     printf("\n sistema obtingut al final \n");
     for (i = 0; i < n; i++) {
 
         for (j = 0; j < n; j++) {
-            printf(" %+10.4lf", A[i][j]);
+            printf(" %+10.6lf", A[i][j]);
         }
-        printf(" | %+.4lf \n", v[i]);
+        printf(" | %+.6lf \n", v[i]);
     }
     return 0;
 
@@ -121,4 +121,11 @@ double horner(float z , double a [], int grau){
         sum = sum *z+a[i];
     }
     return sum ;
+}
+
+double spline(int n, double *x, double *M, double *h, double *N, double *L, double z){
+
+
+    return 0;
+
 }
