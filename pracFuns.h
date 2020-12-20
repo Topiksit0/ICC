@@ -8,8 +8,9 @@
 
 void prodMatVec (double ** A, double * x, double * y, int n);
 double norma2(int n, double * z);
-int resoltTS(int n, double ** A, double * b, double * x, double tol);
+int resolTS(int n, double ** A, double * b, double * x, double tol);
 int gauss(double **A, double *v, double tol, int n);
 int gausspivot(double ** A, double * v, double tol, int n);
 double horner(float z, double * a, int n);
 double spline(int n, double *x, double *M, double *h, double *N, double *L, double z);
+double gausstri(double ** A, double * x, double tol, int n);

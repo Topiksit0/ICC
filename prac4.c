@@ -1,3 +1,6 @@
+/* PALOMINO : VIVAR : MARCOS : 47132283Q / NIUB : 20329665 */
+/* LOPEZ: RUIZ : GERARD : 46495842P / NIUB : 20274763*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -7,7 +10,7 @@ int main(int argc, char *argv[]){
     int n,k = 0,i,j,l; 
     double interval1, interval2,tol, **A, *b, num,m,z; 
 
-    char nom_fitxer_entrada[100], nom_fitxer_sort[100]; 
+    char nomEntrada[100], nomSortida[100]; 
     FILE *fitxer_entrada;
     FILE *fitxer_sortida;
 
@@ -25,9 +28,9 @@ int main(int argc, char *argv[]){
 
 
     printf("Dona'm el nom del fitxer que vols obrir:\n");
-    scanf("%s", nom_fitxer_entrada);
+    scanf("%s", nomEntrada);
 
-    fitxer_entrada = fopen(nom_fitxer_entrada, "r");
+    fitxer_entrada = fopen(nomEntrada, "r");
 
     if (fitxer_entrada == NULL){
         printf("Error al obrir el fitxer\n");
@@ -36,8 +39,8 @@ int main(int argc, char *argv[]){
 
 
     printf("Dona'm el nom del fitxer on escriurem els punts:\n");
-    scanf("%s", nom_fitxer_sort);
-    fitxer_sortida = fopen(nom_fitxer_sort, "w");
+    scanf("%s", nomSortida);
+    fitxer_sortida = fopen(nomSortida, "w");
 
     
 
@@ -69,9 +72,9 @@ int main(int argc, char *argv[]){
     b = (double *) malloc (n * sizeof(double));
 
 
-    /* Inicializamos la matriz Vandermonde*/
+    /* Rellenamos la matriz de Vandermonde*/
     for (i = 0; i < n; i++){
-        for (j = 0; j < n; j++){
+        for (j = 0; j < n ; j++){
             if (j == 0){
                 A[i][j] = 1;           
             }
@@ -83,7 +86,7 @@ int main(int argc, char *argv[]){
         k += 1;
     }
 
-    printf("\n la matriz Vandermonde és: \n");
+    printf("\n la matriz Vandermonde es: \n");
     /* Imprimimos la matriz Vandermonde */
     for (i = 0; i <  n; i++){
         for (j = 0; j < n; j++){
@@ -101,12 +104,6 @@ int main(int argc, char *argv[]){
 
     double result = gauss(A, b, tol, n);
 
-    for (i = 0; i <  n; i++){
-        for (j = 0; j < n; j++){
-            printf("%16.7e", A[i][j]);
-        }
-        printf("\n");
-    }
 
 
     if (result == 0){
@@ -120,7 +117,7 @@ int main(int argc, char *argv[]){
         printf("Dades guardades al fitxer correctament\n");
     }
     else{
-        printf("Ha succeït un error\n");
+        printf("Error en la tolerancia indicada\n");
     }
 
 

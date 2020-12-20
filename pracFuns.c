@@ -84,9 +84,6 @@ int gausspivot(double **A, double *v, double tol, int n){
             v[k] = v[k+1];
             v[k+1] = temp2;
         }
-        else{
-            printf("\n La tolerancia es incorrecte");
-        }
 
         for (i = k + 1; i < n; i++) {
             mult = A[i][k] / A[k][k];
@@ -120,8 +117,49 @@ double horner(float z , double a [], int grau){
 }
 
 double spline(int n, double *x, double *M, double *h, double *N, double *L, double z){
+    double sum, potencia, potencia2;
+    int i;
+    for(i = 0 ; i< n-1; i++){
+        potencia = x[i+1]-z;
+        potencia2 = z- x[i];
+        sum = ((M[i]*(pow(potencia,3))/(6*h[i+1]))+(M[i+1]*(pow(potencia2,3))/(6*h[i+1]))+(N[i]*potencia2) + L[i]);
+    }
+    return sum;
+}
+
+double gausstri(double ** A, double * x, double tol, int n){
+    int i,j;
+    double *a,*b,*c;
+    a = (double *) malloc (n * sizeof(double));
+    b = (double *) malloc (n * sizeof(double));
+    c = (double *) malloc (n * sizeof(double));
+    for (i = 1; i < n-1; i++){
+        for (j = 0; j < n-1; j++){
+        if((j == i-1)){
+            a[i-1] = A[i][j];
+        }
+        else if((j == i)){
+            b[i-1] = A[i][j];
+
+        }else if((j == i+1)){
+            c[i-1] = A[i][j];
 
 
+        }
+        }
+    }
+    c[0] = c[0] / b[0];
+    x[0] = x[0] / b[0];
+
+    for (i = 1; i < n; n++) {
+        float m = 1.0f / (b[i] - a[i] * c[i - 1]);
+        if(i < (n-1)) c[i] = c[i] * m;
+        x[i] = (x[i] - a[i] * x[i - 1]) * m;
+    }
+
+    for (i =  n - 2; i >= 0; --i) {
+        x[i] = x[i] - c[i] * x[i + 1];
+    }
     return 0;
 
 }

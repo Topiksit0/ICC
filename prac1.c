@@ -1,4 +1,4 @@
-/* PALOMINO : VIVAR : MARCOS : 47132283Q / NIUB : membre1 de la parella */
+/* PALOMINO : VIVAR : MARCOS : 47132283Q / NIUB : 20329665 */
 /* LOPEZ : RUIZ : GERARD : 46495842P / NIUB : 20274763 */
 #include <stdlib.h>
 #include <stdio.h>
